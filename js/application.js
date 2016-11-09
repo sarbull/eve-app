@@ -31,7 +31,8 @@
               'data': fulfillment,
               'timestamp': data.timestamp,
               'botUser': true,
-              'realUser': false
+              'realUser': false,
+                img: Math.floor((Math.random() * 8) + 1)
             }
           }).forEach(function (m) {
             $scope.messages.push(m);
