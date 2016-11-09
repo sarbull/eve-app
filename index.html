@@ -21,17 +21,24 @@
                     <div class="title">Interactive console - Eve</div>
                 </div>
                 <ul class="messages">
-                    <li class="message left appeared" ng-repeat="message in messages">
+                    <li class="message appeared" ng-class="{'right': item.realUser, 'left': item.botUser}" ng-repeat="item in messages">
                         <div class="avatar">
-                            <img ng-show="message.botUser" width="70" height="70" src="img/eve.png"/>
-                            <img ng-show="message.realUser" width="70" height="70" src="img/boy.png"/>
+                            <img ng-if="item.botUser" width="70" height="70" src="img/eve{{ item.eve }}.png"/>
+                            <img ng-if="item.realUser" width="70" height="70" src="img/boy.png"/>
                         </div>
+
                         <div class="text_wrapper">
-                            <small>{{ message.timestamp | date:"'Today at' h:mma" }}</small>
-                            <div class="text">{{ message.data.speech }}</div>
-                            <button ng-repeat="response in message.data.messages[0].payload.answers" ng-click="send(response)">{{ response }}</button>
-                            <img ng-if="message.data.messages[1].imageUrl" ng-src="{{ message.data.messages[1].imageUrl }}">
-                            <img ng-if="message.data.messages[2].imageUrl" ng-src="{{ message.data.messages[3].imageUrl }}">
+                            <small>{{ item.timestamp | date:"'Today at' h:mma" }}</small>
+
+                            <div ng-repeat="m in item.result.fulfillment.messages">
+                                <img ng-if="m.type == 3" ng-src="{{ m.imageUrl }}" class="local-image">
+
+                                <button ng-if="m.type == 4" ng-click="send(answer)" ng-repeat="answer in m.payload.answers">
+                                    {{ answer }}
+                                </button>
+
+                                <div class="text" ng-if="m.type == 0">{{ m.speech }}</div>
+                            </div>
                         </div>
                     </li>
                 </ul>

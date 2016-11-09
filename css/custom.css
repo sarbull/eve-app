@@ -7,6 +7,10 @@ body {
   font-family: "Calibri", "Roboto", sans-serif;
 }
 
+.local-image {
+  max-width:200px;
+}
+
 .chat_window {
   position: absolute;
   width: calc(100% - 20px);

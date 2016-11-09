@@ -21,21 +21,11 @@
               return;
           }
 
-          // speech = (data.result.fulfillment) ? data.result.fulfillment.speech : data.result.speech;
-          //self.apiAiTts.tts(speech, undefined, 'en-US');
+          data.botUser  = true;
+          data.realUser = false;
+          data.eve      = Math.floor((Math.random() * 8 + 1));
 
-          data.result.fulfillment.speech.split('|').map(function (s) {
-            var fulfillment = angular.copy(data.result.fulfillment);
-            fulfillment.speech = s;
-            return {
-              'data': fulfillment,
-              'timestamp': data.timestamp,
-              'botUser': true,
-              'realUser': false
-            }
-          }).forEach(function (m) {
-            $scope.messages.push(m);
-          });
+          $scope.messages.push(data);
 
           $scope.input = '';
 
@@ -48,14 +38,22 @@
         ApiAIService.sendJson(input);
 
         $scope.messages.push({
-          data: {
-            speech: input
+          "timestamp": new Date(),
+          "result": {
+            "fulfillment": {
+              "messages": [
+                {
+                  "type": 0,
+                  "speech": input
+                }
+              ]
+            }
           },
-          timestamp: new Date(),
-          botUser:false,
-          realUser: true
+          "botUser": false,
+          "realUser": true
         });
       };
+
     }])
 
     //
