@@ -38,9 +38,13 @@
 
                 <div class="bottom_wrapper clearfix">
                     <div class="message_input_wrapper">
-                        <input ng-model="input" class="message_input" placeholder="Type your message here..." />
+                        <input ng-model="input" class="message_input" placeholder="Type your message here..."
+                               ng-enter="send(input)"
+                        />
                     </div>
-                    <button type="button" ng-click="send(input)" class="text">Send</button>
+                    <div class="send_message"><div class="icon"></div><div class="text"
+
+                                               ng-click="send(input)">Send</div></div></div></div>
                 </div>
             </div>
             <div class="message_template">
