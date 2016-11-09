@@ -23,7 +23,8 @@
                 <ul class="messages">
                     <li class="message left appeared" ng-repeat="message in messages">
                         <div class="avatar">
-                            <img ng-show="message.botuser" width="70" height="70" src="img/bot.png"/>
+                            <img ng-show="message.botUser" width="70" height="70" src="img/bot.png"/>
+                            <img ng-show="message.realUser" width="70" height="70" src="img/boy.png"/>
                         </div>
                         <div class="text_wrapper">
                             <small>{{ message.timestamp | date }}</small>
@@ -31,9 +32,7 @@
                         </div>
                     </li>
                 </ul>
-                <div>
-                    {{  messages | json }}
-                </div>
+
                 <div class="bottom_wrapper clearfix">
                     <div class="message_input_wrapper">
                         <input ng-model="input" class="message_input" placeholder="Type your message here..." />
