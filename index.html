@@ -27,7 +27,7 @@
                             <img ng-show="message.realUser" width="70" height="70" src="img/boy.png"/>
                         </div>
                         <div class="text_wrapper">
-                            <small>{{ message.timestamp | date }}</small>
+                            <small>{{ message.timestamp | date:"'Today at' h:mma" }}</small>
                             <div class="text">{{ message.data.speech }}</div>
                             <button ng-repeat="response in message.data.messages[0].payload.answers" ng-click="send(response)">{{ response }}</button>
                             <img ng-if="message.data.messages[1].imageUrl" ng-src="{{ message.data.messages[1].imageUrl }}">
