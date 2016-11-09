@@ -24,20 +24,31 @@
           speech = (data.result.fulfillment) ? data.result.fulfillment.speech : data.result.speech;
           //self.apiAiTts.tts(speech, undefined, 'en-US');
 
-          $scope.messages.push({'data': data.result.fulfillment.speech,
-                            'timestamp': data.timestamp,
-              botUser:true, realUser : false});
+          $scope.messages.push({
+            'data': data.result.fulfillment,
+            'timestamp': data.timestamp,
+            'botUser': true,
+            'realUser': false
+          });
 
           $scope.input = '';
 
           $scope.$apply();
         };
 
-      $scope.send = function() {
+      $scope.send = function(input) {
         console.log('send clicked');
 
-        ApiAIService.sendJson($scope.input);
-        $scope.messages.push({'data': $scope.input, timestamp: new Date(), botUser:false, realUser: true});
+        ApiAIService.sendJson(input);
+
+        $scope.messages.push({
+          data: {
+            speech: input
+          },
+          timestamp: new Date(),
+          botUser:false,
+          realUser: true
+        });
       };
     }])
 })();
