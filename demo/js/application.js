@@ -33,7 +33,8 @@
       var self = this;
 
       var apiAiTts;
-      var isListening = false;
+
+      self.isListening = false;
 
 
       self._generateId = function(length) {
@@ -177,7 +178,7 @@
       self._start = function() {
         console.log('start');
 
-        isListening = true;
+        self.isListening = true;
         self.apiAi.startListening();
       };
 
@@ -185,7 +186,7 @@
         console.log('stop');
 
         self.apiAi.stopListening();
-        isListening = false;
+        self.isListening = false;
       };
 
       self._init();
