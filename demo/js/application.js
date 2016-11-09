@@ -1,7 +1,6 @@
 (function() {
   'use strict';
 
-
   angular
     .module('eveApp', [])
     .controller('WelcomeController', ['$scope', function($scope) {
@@ -11,12 +10,32 @@
       $scope.input = '';
       $scope.messages = [];
 
+      ApiAIService.apiAi.onResults = function (data) {
+          console.log("> ON RESULT", data);
+
+          var status = data.status,
+              code,
+              speech;
+
+          if (!(status && (code = status.code) && isFinite(parseFloat(code)) && code < 300 && code > 199)) {
+              return;
+          }
+
+          speech = (data.result.fulfillment) ? data.result.fulfillment.speech : data.result.speech;
+          //self.apiAiTts.tts(speech, undefined, 'en-US');
+
+          $scope.messages.push(data.result.fulfillment.speech);
+
+          $scope.input = '';
+
+          $scope.$apply();
+        };
+
       $scope.send = function() {
         console.log('send clicked');
 
         ApiAIService.sendJson($scope.input);
         $scope.messages.push($scope.input);
-        $scope.input = '';
       };
     }])
     .service('ApiAIService', [function() {
@@ -102,8 +121,6 @@
         };
 
         self.apiAi = new ApiAi(config);
-
-        // self.apiAi.sessionId = '1234';
 
         self.apiAi.onInit = function () {
             console.log("> ON INIT use direct assignment property");
