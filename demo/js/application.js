@@ -48,17 +48,13 @@
       var sessionId = self._generateId(32);
 
       self.start = function () {
-        start.className += ' hidden';
-        stop.className = stop.className.replace('hidden', '');
-
-        self._start();
+        self.apiAi._start();
+        console.log('apiAi started');
       };
 
       self.stop = function () {
-          self._stop();
-
-          stop.className += ' hidden';
-          start.className = start.className.replace('hidden', '');
+          self.apiAi._stop();
+          console.log('apiAi stopped');
       };
 
       self.sendJson = function (input) {
@@ -107,7 +103,7 @@
 
         self.apiAi = new ApiAi(config);
 
-        self.apiAi.sessionId = '1234';
+        // self.apiAi.sessionId = '1234';
 
         self.apiAi.onInit = function () {
             console.log("> ON INIT use direct assignment property");
@@ -141,24 +137,24 @@
             self.apiAi.close();
         };
 
-        self.apiAi.onResults = function (data) {
-            console.log("> ON RESULT", data);
+        // self.apiAi.onResults = function (data) {
+        //     console.log("> ON RESULT", data);
 
-            var status = data.status,
-                code,
-                speech;
+        //     var status = data.status,
+        //         code,
+        //         speech;
 
-            if (!(status && (code = status.code) && isFinite(parseFloat(code)) && code < 300 && code > 199)) {
-                return;
-            }
+        //     if (!(status && (code = status.code) && isFinite(parseFloat(code)) && code < 300 && code > 199)) {
+        //         return;
+        //     }
 
-            speech = (data.result.fulfillment) ? data.result.fulfillment.speech : data.result.speech;
-            //self.apiAiTts.tts(speech, undefined, 'en-US');
+        //     speech = (data.result.fulfillment) ? data.result.fulfillment.speech : data.result.speech;
+        //     //self.apiAiTts.tts(speech, undefined, 'en-US');
 
-            dialogue.innerHTML += ('user : ' + data.result.resolvedQuery + '\napi  : ' + speech + '\n\n');
-            response.innerHTML = JSON.stringify(data, null, 2);
-            text.innerHTML = '';
-        };
+        //     dialogue.innerHTML += ('user : ' + data.result.resolvedQuery + '\napi  : ' + speech + '\n\n');
+        //     response.innerHTML = JSON.stringify(data, null, 2);
+        //     text.innerHTML = '';
+        // };
 
         self.apiAi.onError = function (code, data) {
           self.apiAi.close();
