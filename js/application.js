@@ -21,14 +21,20 @@
               return;
           }
 
-          speech = (data.result.fulfillment) ? data.result.fulfillment.speech : data.result.speech;
+          // speech = (data.result.fulfillment) ? data.result.fulfillment.speech : data.result.speech;
           //self.apiAiTts.tts(speech, undefined, 'en-US');
 
-          $scope.messages.push({
-            'data': data.result.fulfillment,
-            'timestamp': data.timestamp,
-            'botUser': true,
-            'realUser': false
+          data.result.fulfillment.speech.split('|').map(function (s) {
+            var fulfillment = angular.copy(data.result.fulfillment);
+            fulfillment.speech = s;
+            return {
+              'data': fulfillment,
+              'timestamp': data.timestamp,
+              'botUser': true,
+              'realUser': false
+            }
+          }).forEach(function (m) {
+            $scope.messages.push(m);
           });
 
           $scope.input = '';
