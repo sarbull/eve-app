@@ -32,7 +32,7 @@
 
       var self = this;
 
-      var apiAi, apiAiTts;
+      var apiAiTts;
       var isListening = false;
 
 
@@ -74,17 +74,17 @@
 
         console.log('sendJson', queryJson);
 
-        apiAi.sendJson(queryJson);
+        self.apiAi.sendJson(queryJson);
       };
 
       self.open = function () {
         console.log('open');
-        apiAi.open();
+        self.apiAi.open();
       };
 
       self.close = function () {
         console.log('close');
-        apiAi.close();
+        self.apiAi.close();
       };
 
       self.clean = function () {
@@ -105,27 +105,27 @@
             }
         };
 
-        apiAi = new ApiAi(config);
+        self.apiAi = new ApiAi(config);
 
-        apiAi.sessionId = '1234';
+        self.apiAi.sessionId = '1234';
 
-        apiAi.onInit = function () {
+        self.apiAi.onInit = function () {
             console.log("> ON INIT use direct assignment property");
-            apiAi.open();
+            self.apiAi.open();
         };
 
-        apiAi.onStartListening = function () {
+        self.apiAi.onStartListening = function () {
             console.log("> ON START LISTENING");
         };
 
-        apiAi.onStopListening = function () {
+        self.apiAi.onStopListening = function () {
             console.log("> ON STOP LISTENING");
         };
 
-        apiAi.onOpen = function () {
+        self.apiAi.onOpen = function () {
             console.log("> ON OPEN SESSION");
 
-            apiAi.sendJson({
+            self.apiAi.sendJson({
                 "v": "20150512",
                 "query": "hello",
                 "timezone": "GMT+6",
@@ -136,12 +136,12 @@
 
         };
 
-        apiAi.onClose = function () {
+        self.apiAi.onClose = function () {
             console.log("> ON CLOSE");
-            apiAi.close();
+            self.apiAi.close();
         };
 
-        apiAi.onResults = function (data) {
+        self.apiAi.onResults = function (data) {
             console.log("> ON RESULT", data);
 
             var status = data.status,
@@ -160,16 +160,16 @@
             text.innerHTML = '';
         };
 
-        apiAi.onError = function (code, data) {
-          apiAi.close();
+        self.apiAi.onError = function (code, data) {
+          self.apiAi.close();
           console.log("> ON ERROR", code, data);
         };
 
-        apiAi.onEvent = function (code, data) {
+        self.apiAi.onEvent = function (code, data) {
           console.log("> ON EVENT", code, data);
         };
 
-        apiAi.init();
+        self.apiAi.init();
 
         //apiAiTts = new TTS(TTS_DOMAIN, ACCESS_TOKEN, undefined, 'en-US');
       };
@@ -178,13 +178,13 @@
         console.log('start');
 
         isListening = true;
-        apiAi.startListening();
+        self.apiAi.startListening();
       };
 
       self._stop = function() {
         console.log('stop');
 
-        apiAi.stopListening();
+        self.apiAi.stopListening();
         isListening = false;
       };
 
