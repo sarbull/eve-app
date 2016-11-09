@@ -2,10 +2,7 @@
   "name": "eveapp-webapp",
   "version": "1.0.0",
   "description": "eveApp",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sarbull/eveapp-webapp.git"
@@ -22,6 +19,11 @@
   "dependencies": {
     "angular": "^1.5.8",
     "bootstrap": "^3.3.7",
-    "jquery": "^3.1.1"
+    "jquery": "^3.1.1",
+    "express": "^4.14.0"
+  }
+  ,"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   }
 }
