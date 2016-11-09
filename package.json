@@ -1,0 +1,27 @@
+{
+  "name": "eveapp-webapp",
+  "version": "1.0.0",
+  "description": "eveApp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarbull/eveapp-webapp.git"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sarbull/eveapp-webapp/issues"
+  },
+  "homepage": "https://github.com/sarbull/eveapp-webapp#readme",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1"
+  }
+}
