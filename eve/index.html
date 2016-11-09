@@ -2,7 +2,7 @@
 <html ng-app="eveApp">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Api.ai demo</title>
+    <title>Eve - You autism safegard</title>
     <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/custom.css" rel="stylesheet" type="text/css">
 </head>
@@ -22,13 +22,17 @@
                 </div>
                 <ul class="messages">
                     <li class="message left appeared" ng-repeat="message in messages">
-                        <div class="avatar"></div>
+                        <div class="avatar">
+                            <img ng-show="message.botUser" width="70" height="70" src="img/bot.png"/>
+                            <img ng-show="message.realUser" width="70" height="70" src="img/boy.png"/>
+                        </div>
                         <div class="text_wrapper">
                             <small>{{ message.timestamp | date }}</small>
                             <div class="text">{{ message.data }}</div>
                         </div>
                     </li>
                 </ul>
+
                 <div class="bottom_wrapper clearfix">
                     <div class="message_input_wrapper">
                         <input ng-model="input" class="message_input" placeholder="Type your message here..." />
@@ -59,8 +63,8 @@
 <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
-<script type="text/javascript" src="/demo/js/application.js"></script>
-<script type="text/javascript" src="/demo/js/services/ApiAIService.js"></script>
-<script type="text/javascript" src="/demo/js/services/RandomHelperService.js"></script>
+<script type="text/javascript" src="/eve/js/application.js"></script>
+<script type="text/javascript" src="/eve/js/services/ApiAIService.js"></script>
+<script type="text/javascript" src="/eve/js/services/RandomHelperService.js"></script>
 </body>
 </html>
