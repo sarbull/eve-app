@@ -32,10 +32,9 @@
 
       var self = this;
 
-      var apiAiTts;
+      self.apiAiTts;
 
       self.isListening = false;
-
 
       self._generateId = function(length) {
         var text = "";
@@ -154,7 +153,7 @@
             }
 
             speech = (data.result.fulfillment) ? data.result.fulfillment.speech : data.result.speech;
-            //apiAiTts.tts(speech, undefined, 'en-US');
+            //self.apiAiTts.tts(speech, undefined, 'en-US');
 
             dialogue.innerHTML += ('user : ' + data.result.resolvedQuery + '\napi  : ' + speech + '\n\n');
             response.innerHTML = JSON.stringify(data, null, 2);
@@ -172,7 +171,7 @@
 
         self.apiAi.init();
 
-        //apiAiTts = new TTS(TTS_DOMAIN, ACCESS_TOKEN, undefined, 'en-US');
+        //self.apiAiTts = new TTS(TTS_DOMAIN, ACCESS_TOKEN, undefined, 'en-US');
       };
 
       self._start = function() {
