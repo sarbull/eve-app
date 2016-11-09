@@ -24,7 +24,7 @@
           speech = (data.result.fulfillment) ? data.result.fulfillment.speech : data.result.speech;
           //self.apiAiTts.tts(speech, undefined, 'en-US');
 
-          $scope.messages.push({'data': data.result.fulfillment.speech,
+          $scope.messages.push({'data': data.result.fulfillment.speech, raw:data.result,
                             'timestamp': data.timestamp,
               botUser:true, realUser : false});
 
