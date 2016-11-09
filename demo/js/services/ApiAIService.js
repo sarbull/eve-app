@@ -3,33 +3,21 @@
 
     angular
         .module('eveApp')
-        .service('ApiAIService', [function() {
+        .service('ApiAIService', ['RandomHelperService', function(RandomHelperService) {
             var app, text, dialogue, response, start, stop;
             var SERVER_PROTO, SERVER_DOMAIN, SERVER_PORT, ACCESS_TOKEN, SERVER_VERSION, TTS_DOMAIN;
 
             SERVER_PROTO   = 'wss';
             SERVER_DOMAIN  = 'api-ws.api.ai';
-            TTS_DOMAIN     = 'api.api.ai';
             SERVER_PORT    = '4435';
             ACCESS_TOKEN   = 'f1bf0afa8ea045f6aff49b237f66c737';
             SERVER_VERSION = '20150910';
 
             var self = this;
 
-            self.apiAiTts;
-
             self.isListening = false;
 
-            self._generateId = function(length) {
-                var text = "";
-                var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                for (var i = 0; i < length; i++) {
-                    text += possible.charAt(Math.floor(Math.random() * possible.length));
-                }
-                return text;
-            };
-
-            var sessionId = self._generateId(32);
+            self.sessionId = RandomHelperService.generate(32);
 
             self.start = function () {
                 self.apiAi._start();
@@ -49,7 +37,7 @@
                         "timezone": "GMT+6",
                         "lang": "en",
                         //"contexts" : ["weather", "local"],
-                        "sessionId": sessionId
+                        "sessionId": self.sessionId
                     };
 
                 console.log('sendJson', queryJson);
@@ -78,7 +66,7 @@
                     server: SERVER_PROTO + '://' + SERVER_DOMAIN + ':' + SERVER_PORT + '/api/ws/query',
                     serverVersion: SERVER_VERSION,
                     token: ACCESS_TOKEN,
-                    sessionId: sessionId,
+                    sessionId: self.sessionId,
                     lang: 'en',
                     onInit: function () {
                         console.log("> ON INIT use config");
@@ -86,8 +74,6 @@
                 };
 
                 self.apiAi = new ApiAi(config);
-
-                // self.apiAi.sessionId = '1234';
 
                 self.apiAi.onInit = function () {
                     console.log("> ON INIT use direct assignment property");
@@ -111,7 +97,7 @@
                         "timezone": "GMT+6",
                         "lang": "en",
                         //"contexts" : ["weather", "local"],
-                        "sessionId": sessionId
+                        "sessionId": self.sessionId
                     });
 
                 };
@@ -120,25 +106,6 @@
                     console.log("> ON CLOSE");
                     self.apiAi.close();
                 };
-
-                // self.apiAi.onResults = function (data) {
-                //     console.log("> ON RESULT", data);
-
-                //     var status = data.status,
-                //         code,
-                //         speech;
-
-                //     if (!(status && (code = status.code) && isFinite(parseFloat(code)) && code < 300 && code > 199)) {
-                //         return;
-                //     }
-
-                //     speech = (data.result.fulfillment) ? data.result.fulfillment.speech : data.result.speech;
-                //     //self.apiAiTts.tts(speech, undefined, 'en-US');
-
-                //     dialogue.innerHTML += ('user : ' + data.result.resolvedQuery + '\napi  : ' + speech + '\n\n');
-                //     response.innerHTML = JSON.stringify(data, null, 2);
-                //     text.innerHTML = '';
-                // };
 
                 self.apiAi.onError = function (code, data) {
                     self.apiAi.close();
@@ -150,8 +117,6 @@
                 };
 
                 self.apiAi.init();
-
-                //self.apiAiTts = new TTS(TTS_DOMAIN, ACCESS_TOKEN, undefined, 'en-US');
             };
 
             self._start = function() {
