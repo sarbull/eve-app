@@ -24,7 +24,8 @@
                     <li class="message left appeared" ng-repeat="message in messages">
                         <div class="avatar"></div>
                         <div class="text_wrapper">
-                            <div class="text">{{ message }}</div>
+                            <small>{{ message.timestamp | date }}</small>
+                            <div class="text">{{ message.data }}</div>
                         </div>
                     </li>
                 </ul>
@@ -46,41 +47,6 @@
         </div>
     </div>
 </div>
-
-
-
-<!-- <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            See browser console for more details.
-            <br/>
-            <span id="server"></span>
-            <br/>
-            <span id="token"></span>
-            <br/>
-
-            <button type="button" onclick="app.open()">Open WebSocket</button>
-            <button type="button" onclick="app.close()">Close WebSocket</button>
-
-            <br/><br/>
-
-            <button id="start" type="button" onclick="app.start()">Start</button>
-            <button id="stop" type="button" onclick="app.stop()" class="hidden">Stop</button>
-            or send json <input id="text" type="text"/>
-            <button type="button" onclick="app.sendJson()">Send JSON</button>
-
-            <br/><br/>
-
-            <button id="clean" type="button" onclick="app.clean()">Clean dialogue</button>
-            <div style="display: flex">
-                <div id="dialogue" class="half-panel" style="white-space: pre-line;width: 50%"></div>
-                <div id="response" class="half-panel" style="white-space: pre;width: 50%;"></div>
-            </div>
-        </div>
-    </div>
-</div>
--->
-
 
 
 <script type="text/javascript" src="../src/resampler.js"></script>

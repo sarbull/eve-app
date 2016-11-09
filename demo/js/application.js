@@ -24,7 +24,7 @@
           speech = (data.result.fulfillment) ? data.result.fulfillment.speech : data.result.speech;
           //self.apiAiTts.tts(speech, undefined, 'en-US');
 
-          $scope.messages.push(data.result.fulfillment.speech);
+          $scope.messages.push({'data': data.result.fulfillment.speech, 'timestamp': data.timestamp});
 
           $scope.input = '';
 
@@ -35,7 +35,7 @@
         console.log('send clicked');
 
         ApiAIService.sendJson($scope.input);
-        $scope.messages.push($scope.input);
+        $scope.messages.push({'data': $scope.input, timestamp: new Date()});
       };
     }])
     .service('ApiAIService', [function() {
