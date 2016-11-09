@@ -18,8 +18,6 @@
         $scope.messages.push($scope.input);
         $scope.input = '';
       };
-
-
     }])
     .service('ApiAIService', [function() {
       var app, text, dialogue, response, start, stop;
@@ -53,11 +51,11 @@
         start.className += ' hidden';
         stop.className = stop.className.replace('hidden', '');
 
-        _start();
+        self._start();
       };
 
       self.stop = function () {
-          _stop();
+          self._stop();
 
           stop.className += ' hidden';
           start.className = start.className.replace('hidden', '');
