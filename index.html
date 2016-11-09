@@ -20,21 +20,23 @@
                     </div>
                     <div class="title">Interactive console - Eve</div>
                 </div>
-                <ul class="messages">
-                    <li class="message left appeared" ng-repeat="message in messages">
-                        <div class="avatar">
-                            <img ng-show="message.botUser" width="70" height="70" src="img/eve.png"/>
-                            <img ng-show="message.realUser" width="70" height="70" src="img/boy.png"/>
-                        </div>
-                        <div class="text_wrapper">
-                            <small>{{ message.timestamp | date:"'Today at' h:mma" }}</small>
-                            <div class="text">{{ message.data.speech }}</div>
-                            <button ng-repeat="response in message.data.messages[0].payload.answers" ng-click="send(response)">{{ response }}</button>
-                            <img ng-if="message.data.messages[1].imageUrl" ng-src="{{ message.data.messages[1].imageUrl }}">
-                            <img ng-if="message.data.messages[2].imageUrl" ng-src="{{ message.data.messages[3].imageUrl }}">
-                        </div>
-                    </li>
-                </ul>
+                <div id="main-content">
+                    <ul class="messages">
+                        <li class="message left appeared" ng-repeat="message in messages">
+                            <div class="avatar">
+                                <img ng-show="message.botUser" width="70" height="70" src="img/eve.png"/>
+                                <img ng-show="message.realUser" width="70" height="70" src="img/boy.png"/>
+                            </div>
+                            <div class="text_wrapper">
+                                <small>{{ message.timestamp | date:"'Today at' h:mma" }}</small>
+                                <div class="text">{{ message.data.speech }}</div>
+                                <button ng-repeat="response in message.data.messages[0].payload.answers" ng-click="send(response)">{{ response }}</button>
+                                <img ng-if="message.data.messages[1].imageUrl" ng-src="{{ message.data.messages[1].imageUrl }}">
+                                <img ng-if="message.data.messages[2].imageUrl" ng-src="{{ message.data.messages[3].imageUrl }}">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
 
                 <div class="bottom_wrapper clearfix">
                     <div class="message_input_wrapper">
@@ -74,5 +76,7 @@
 <script type="text/javascript" src="js/directives/directives.js"></script>
 <script type="text/javascript" src="js/services/ApiAIService.js"></script>
 <script type="text/javascript" src="js/services/RandomHelperService.js"></script>
+<script type="text/javascript" src="js/services/DrawService.js"></script>
+
 </body>
 </html>

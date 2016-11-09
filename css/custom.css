@@ -7,6 +7,18 @@ body {
   font-family: "Calibri", "Roboto", sans-serif;
 }
 
+// #canvasDiv {
+//   position: relative;
+//   margin: auto;
+//   width: 490px;
+//   height: 220px;
+//   left: 0px;
+//   right: 0px;
+//   top: 0px;
+//   bottom: 0px;
+//   z-index:9999;
+// }
+
 .chat_window {
   position: absolute;
   width: calc(100% - 20px);
