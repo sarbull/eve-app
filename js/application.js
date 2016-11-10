@@ -46,32 +46,33 @@
                   });
                 }
 
-                var objDiv       = document.getElementById("messages");
+                var objDiv = document.getElementById("messages");
                 objDiv.scrollTop = objDiv.scrollHeight;
+
                 $scope.$apply();
             };
 
             $scope.send = function (input) {
                 console.log('send clicked');
 
-                if(input != '') {
-                  ApiAIService.sendJson(input);
+                if (input != '') {
+                    ApiAIService.sendJson(input);
 
-                  $scope.messages.push({
-                      "timestamp": new Date(),
-                      "result": {
-                          "fulfillment": {
-                              "messages": [
-                                  {
-                                      "type": 0,
-                                      "speech": input
-                                  }
-                              ]
-                          }
-                      },
-                      "botUser": false,
-                      "realUser": true
-                  });
+                    $scope.messages.push({
+                        "timestamp": new Date(),
+                        "result": {
+                            "fulfillment": {
+                                "messages": [
+                                    {
+                                        "type": 0,
+                                        "speech": input
+                                    }
+                                ]
+                            }
+                        },
+                        "botUser": false,
+                        "realUser": true
+                    });
                 }
             };
 
