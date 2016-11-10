@@ -34,6 +34,8 @@
                 $scope.input = '';
 
                 $scope.$apply();
+                var audio = new Audio('sounds/chime.mp3');
+                audio.play();
             };
 
             $scope.send = function (input) {
