@@ -3,9 +3,7 @@
 }
 
 body {
-  background-image:url('../img/bg.jpg');
-  background-repeat:no-repeat;
-  background-position: center top;
+  background-color: #edeff2;
   font-family: "Calibri", "Roboto", sans-serif;
 }
 
@@ -59,6 +57,12 @@ body {
   text-align: center;
   color: #bcbdc0;
   font-size: 20px;
+}
+
+#messages {
+  background-image:url('../img/bg.jpg');
+  background-repeat:no-repeat;
+  background-position: top center;
 }
 
 .messages {
