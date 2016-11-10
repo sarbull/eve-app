@@ -33,17 +33,22 @@
 
                 $scope.input = '';
 
-                $scope.$apply();
+                if(data.result.fulfillment.messages != undefined) {
+                  data.result.fulfillment.messages.forEach(function(m) {
+                    if(m.payload && m.payload.chime) {
+                      var audio = new Audio('sounds/chime.mp3');
+                      audio.play();
+                    }
+
+                    if(m.payload && m.payload.drawAction) {
+                      angular.element('#draw').css({'display': 'block'});
+                    }
+                  });
+                }
 
                 var objDiv       = document.getElementById("messages");
                 objDiv.scrollTop = objDiv.scrollHeight;
-
-                data.result.fulfillment.messages.forEach(function(m) {
-                  if(m.payload && m.payload.chime) {
-                    var audio = new Audio('sounds/chime.mp3');
-                    audio.play();
-                  }
-                });
+                $scope.$apply();
             };
 
             $scope.send = function (input) {

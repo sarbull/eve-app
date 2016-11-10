@@ -40,6 +40,8 @@
                                     {{ answer }}
                                 </button>
 
+                                <canvas ng-if="m.type == 4 && m.payload.drawAction" drawing style="background:#fff;"></canvas>
+
                                 <div class="text" ng-if="m.type == 0">{{ m.speech }}</div>
                             </div>
                         </div>
@@ -57,14 +59,6 @@
                                                ng-click="send(input)">Send</div></div></div></div>
                     <input type="checkbox" ng-model="speechOn" /> Speech enabled
                 </div>
-            </div>
-            <div class="message_template">
-                <li class="message">
-                    <div class="avatar"></div>
-                    <div class="text_wrapper">
-                        <div class="text"></div>
-                    </div>
-                </li>
             </div>
         </div>
     </div>
