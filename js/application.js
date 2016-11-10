@@ -39,23 +39,25 @@
             $scope.send = function (input) {
                 console.log('send clicked');
 
-                ApiAIService.sendJson(input);
+                if(input != '') {
+                  ApiAIService.sendJson(input);
 
-                $scope.messages.push({
-                    "timestamp": new Date(),
-                    "result": {
-                        "fulfillment": {
-                            "messages": [
-                                {
-                                    "type": 0,
-                                    "speech": input
-                                }
-                            ]
-                        }
-                    },
-                    "botUser": false,
-                    "realUser": true
-                });
+                  $scope.messages.push({
+                      "timestamp": new Date(),
+                      "result": {
+                          "fulfillment": {
+                              "messages": [
+                                  {
+                                      "type": 0,
+                                      "speech": input
+                                  }
+                              ]
+                          }
+                      },
+                      "botUser": false,
+                      "realUser": true
+                  });
+                }
             };
 
         }]);
