@@ -20,7 +20,7 @@
           if (!(status && (code = status.code) && isFinite(parseFloat(code)) && code < 300 && code > 199)) {
               return;
           }
-
+          ApiAIService.apiAiTts.tts(data.result.fulfillment.speech, undefined, 'en-US');
           data.botUser  = true;
           data.realUser = false;
           data.eve      = Math.floor((Math.random() * 8 + 1));

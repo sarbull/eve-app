@@ -7,6 +7,8 @@
             var app, text, dialogue, response, start, stop;
             var SERVER_PROTO, SERVER_DOMAIN, SERVER_PORT, ACCESS_TOKEN, SERVER_VERSION, TTS_DOMAIN;
 
+
+
             SERVER_PROTO   = 'wss';
             SERVER_DOMAIN  = 'api-ws.api.ai';
             SERVER_PORT    = '4435';
@@ -74,6 +76,9 @@
                 };
 
                 self.apiAi = new ApiAi(config);
+
+                self.apiAiTts = new TTS("api.api.ai", ACCESS_TOKEN, undefined, 'en-US');
+
 
                 self.apiAi.onInit = function () {
                     console.log("> ON INIT use direct assignment property");
