@@ -35,38 +35,40 @@
 
                 $scope.$apply();
 
-                var objDiv       = document.getElementById("messages");
+                var objDiv = document.getElementById("messages");
                 objDiv.scrollTop = objDiv.scrollHeight;
 
-                data.result.fulfillment.messages.forEach(function(m) {
-                  if(m.payload && m.payload.chime) {
-                    var audio = new Audio('sounds/chime.mp3');
-                    audio.play();
-                  }
-                });
+                if (data.result.fulfillment.messages != undefined) {
+                    data.result.fulfillment.messages.forEach(function (m) {
+                        if (m.payload && m.payload.chime) {
+                            var audio = new Audio('sounds/chime.mp3');
+                            audio.play();
+                        }
+                    });
+                }
             };
 
             $scope.send = function (input) {
                 console.log('send clicked');
 
-                if(input != '') {
-                  ApiAIService.sendJson(input);
+                if (input != '') {
+                    ApiAIService.sendJson(input);
 
-                  $scope.messages.push({
-                      "timestamp": new Date(),
-                      "result": {
-                          "fulfillment": {
-                              "messages": [
-                                  {
-                                      "type": 0,
-                                      "speech": input
-                                  }
-                              ]
-                          }
-                      },
-                      "botUser": false,
-                      "realUser": true
-                  });
+                    $scope.messages.push({
+                        "timestamp": new Date(),
+                        "result": {
+                            "fulfillment": {
+                                "messages": [
+                                    {
+                                        "type": 0,
+                                        "speech": input
+                                    }
+                                ]
+                            }
+                        },
+                        "botUser": false,
+                        "realUser": true
+                    });
                 }
             };
 
