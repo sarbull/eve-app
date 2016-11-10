@@ -31,13 +31,14 @@
                             <small>{{ item.timestamp | date:"'Today at' h:mma" }}</small>
 
                             <div ng-repeat="m in item.result.fulfillment.messages">
+
                                 <img ng-if="m.type == 3" ng-src="{{ m.imageUrl }}" class="local-image">
 
                                 <button ng-if="m.type == 4" ng-click="send(answer)" ng-repeat="answer in m.payload.answers">
                                     {{ answer }}
                                 </button>
 
-                                <div class="text" ng-if="m.type == 0">{{ m.speech }}</div>
+                                <div class="text" ng-if="m.type == 0">{{ m.speech || item.result.fulfillment.speech }}</div>
                             </div>
                         </div>
                     </li>
