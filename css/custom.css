@@ -3,7 +3,9 @@
 }
 
 body {
-  background-color: #edeff2;
+  background-image:url('../img/bg.jpg');
+  background-repeat:no-repeat;
+  background-position: center top;
   font-family: "Calibri", "Roboto", sans-serif;
 }
 
