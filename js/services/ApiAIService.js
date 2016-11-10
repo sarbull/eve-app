@@ -36,7 +36,7 @@
                     queryJson = {
                         "v": SERVER_VERSION,
                         "query": query,
-                        "timezone": "GMT+6",
+                        "timezone": "GMT+2",
                         "lang": "en",
                         //"contexts" : ["weather", "local"],
                         "sessionId": self.sessionId

@@ -34,6 +34,10 @@
                 $scope.input = '';
 
                 $scope.$apply();
+
+                var objDiv       = document.getElementById("messages");
+                objDiv.scrollTop = objDiv.scrollHeight;
+
                 data.result.fulfillment.messages.forEach(function(m) {
                   if(m.payload && m.payload.chime) {
                     var audio = new Audio('sounds/chime.mp3');

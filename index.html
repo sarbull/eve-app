@@ -20,7 +20,7 @@
                     </div>
                     <div class="title">Interactive console - Eve</div>
                 </div>
-                <ul class="messages">
+                <ul id="messages" class="messages">
                     <li class="message appeared" ng-class="{'right': item.realUser, 'left': item.botUser}" ng-repeat="item in messages">
                         <div class="avatar">
                             <img ng-if="item.botUser" width="70" height="70" ng-src="{{ 'img/eve' + item.eve + '.jpg'}}"/>
