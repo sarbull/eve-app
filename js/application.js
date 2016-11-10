@@ -46,10 +46,11 @@
                   });
                 }
 
+                $scope.$apply();
+
                 var objDiv = document.getElementById("messages");
                 objDiv.scrollTop = objDiv.scrollHeight;
 
-                $scope.$apply();
             };
 
             $scope.send = function (input) {
