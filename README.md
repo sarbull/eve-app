@@ -8,5 +8,5 @@ from the root of the project
 
 > hs
 
-http://localhost:8080/demo/
+http://localhost:8080/
 
